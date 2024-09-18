@@ -3,12 +3,14 @@ package bits128_test
 import (
 	"testing"
 
+	"strings"
+
 	"github.com/reiver/go-bits128"
 )
 
 func TestMaxUint128(t *testing.T) {
 
-	var expected string = "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+	var expected string = "0x" + strings.Repeat("F", 2*bits128.SizeBytes)
 
 	var actual string = bits128.MaxUint128().HexString()
 
