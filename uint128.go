@@ -15,12 +15,12 @@ const lenuint128 = (128 / 8) // == 16
 // The length of a uint, measured in number-of-bytes.
 const lenuint = int(unsafe.Sizeof(unused))
 
-// SizeUint equals the number of 'uint' that equals a uint128.
+// SizeUints equals the number of 'uint' that equals a uint128.
 //
-// So, for example, if a 'uint' is 32-bits in size, then SizeUint is 4 (== 128 / 32).
+// So, for example, if a 'uint' is 32-bits in size, then SizeUints is 4 (== 128 / 32).
 //
-// And, for example, if a 'uint' is 64-bits in size, then SizeUint is 2 (== 128 / 64).
-const SizeUint = lenuint128 / lenuint
+// And, for example, if a 'uint' is 64-bits in size, then SizeUints is 2 (== 128 / 64).
+const SizeUints = lenuint128 / lenuint
 
 // We expected the length of a uint128 to be divisble by the length of a uint.
 // If it isn't, we panic().
@@ -35,20 +35,42 @@ func init() {
 type Uint128 struct {
 	// We use 'uint' rather than 'uint64' (or something else) to make it so we are using the optimal word length for the CPU architecture.
 	// So, 'uint' MIGHT be 'uint64' or MIGHT be 'uint32' or MIGHT be something else.
-	array [SizeUint]uint
+	array [SizeUints]uint
 }
 
 func Uint128FromUint(value uint) Uint128 {
 	return Uint128{
-		array: [SizeUint]uint{
+		array: [SizeUints]uint{
 			value,
 		},
 	}
 }
 
-func Uint128FromUintsLittleEndian(array [SizeUint]uint) Uint128 {
+func Uint128FromUintsLittleEndian(array [SizeUints]uint) Uint128 {
 	return Uint128{
 		array: array,
+	}
+}
+
+func (src1 *Uint128) Cmp(src2 *Uint128) int {
+	switch {
+	case src1 == src2:
+		return 0
+	case src1.array == src2.array:
+		return 0
+	default:
+		for i:=(SizeUints-1); i>=0; i-- {
+			val1 := src1.array[i]
+			val2 := src2.array[i]
+
+			switch {
+			case val1 < val2:
+				return -1
+			case val1 > val2:
+				return 1
+			}
+		}
+		return 0
 	}
 }
 
