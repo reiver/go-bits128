@@ -6,7 +6,7 @@ import (
 	"github.com/reiver/go-bits128"
 )
 
-func TestMaxuint128(t *testing.T) {
+func TestMaxUint128(t *testing.T) {
 
 	var expected string = "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
 
