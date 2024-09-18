@@ -68,8 +68,3 @@ func (receiver Uint128) String() string {
 
 	return string(p)
 }
-
-// Uints returns the uint128 as a little-endian array of uint.
-func (receiver Uint128) Uints() [SizeUint]uint {
-	return receiver.array
-}
