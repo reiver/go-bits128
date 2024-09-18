@@ -123,7 +123,7 @@ func (receiver *Uint128) Dec() {
 	var borrow uint = 1
 
 	for index:=0; index<SizeUints; index++ {
-		receiver.array[index], borrow = bits.Add(receiver.array[index], 0, borrow)
+		receiver.array[index], borrow = bits.Sub(receiver.array[index], 0, borrow)
 	}
 }
 
