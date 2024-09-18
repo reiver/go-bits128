@@ -16,7 +16,7 @@ const SizeBytes = (128 / 8) // == 16
 // The length of a uint, measured in number-of-bytes.
 const lenuint = int(unsafe.Sizeof(unused))
 
-// SizeUints equals the number of 'uint' that equals a uint128.
+// SizeUints equals the size of a uint128, as measured in the number of 'uint'.
 //
 // So, for example, if a 'uint' is 32-bits in size, then SizeUints is 4 (== 128 / 32).
 //
