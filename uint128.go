@@ -9,8 +9,9 @@ import (
 
 var unused uint
 
-// The length of a uint128, measured in number-of-bytes.
-const lenuint128 = (128 / 8) // == 16
+// SizeBytes equals the size of a uint128, measured in bytes.
+// I.e., 16 (== 128 / 8).
+const SizeBytes = (128 / 8) // == 16
 
 // The length of a uint, measured in number-of-bytes.
 const lenuint = int(unsafe.Sizeof(unused))
@@ -20,13 +21,13 @@ const lenuint = int(unsafe.Sizeof(unused))
 // So, for example, if a 'uint' is 32-bits in size, then SizeUints is 4 (== 128 / 32).
 //
 // And, for example, if a 'uint' is 64-bits in size, then SizeUints is 2 (== 128 / 64).
-const SizeUints = lenuint128 / lenuint
+const SizeUints = SizeBytes / lenuint
 
 // We expected the length of a uint128 to be divisble by the length of a uint.
 // If it isn't, we panic().
 func init() {
-	if 0 != lenuint128 % lenuint {
-		panic(fmt.Sprintf("bits128: expected the length (in bytes) of a 'uint128' (i.e., %d) to be divisible by the length (in bytes) of a 'uint' (i.e., %d), but it isn't", lenuint128, lenuint))
+	if 0 != SizeBytes % lenuint {
+		panic(fmt.Sprintf("bits128: expected the length (in bytes) of a 'uint128' (i.e., %d) to be divisible by the length (in bytes) of a 'uint' (i.e., %d), but it isn't", SizeBytes, lenuint))
 	}
 }
 
