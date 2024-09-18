@@ -92,6 +92,12 @@ func Uint128FromUintsLittleEndian(array [SizeUints]uint) Uint128 {
 	}
 }
 
+func (receiver *Uint128) And(src1 *Uint128, src2 *Uint128) {
+	for index:=0; index<SizeUints; index++ {
+		receiver.array[index] = src1.array[index] & src2.array[index]
+	}
+}
+
 func (src1 *Uint128) Cmp(src2 *Uint128) int {
 	switch {
 	case src1 == src2:
