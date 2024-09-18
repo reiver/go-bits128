@@ -114,6 +114,7 @@ func (src1 *Uint128) Cmp(src2 *Uint128) int {
 	}
 }
 
+// Inc increments the uint128.
 func (receiver *Uint128) Inc() {
 	if nil == receiver {
 		return
@@ -125,7 +126,6 @@ func (receiver *Uint128) Inc() {
 		receiver.array[index], carry = bits.Add(0, receiver.array[index], carry)
 	}
 }
-
 
 func (receiver Uint128) String() string {
 	var buffer [34]byte
