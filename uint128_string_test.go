@@ -332,6 +332,26 @@ func TestUint128_String_uint(t *testing.T) {
 			Value: bits128.Uint128FromUint(0xFEDCBA987654321F),
 			Expected:     "0x0000000000000000FEDCBA987654321F",
 		},
+
+
+
+
+
+
+
+
+
+		{
+			Value: bits128.Uint128FromUintsLittleEndian([2]uint{0xac43eff54de6477c,0xa551f311cf94c7d7}),
+			Expected:                          "0xA551F311CF94C7D7AC43EFF54DE6477C",
+		},
+
+
+
+		{
+			Value: bits128.Uint128FromUintsLittleEndian([2]uint{0xe4f7f439a272aa52,0xfa96edfa7f21f7fe}),
+			Expected:                          "0xFA96EDFA7F21F7FEE4F7F439A272AA52",
+		},
 	}
 
 	for testNumber, test := range tests {

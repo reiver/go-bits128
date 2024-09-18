@@ -15,9 +15,12 @@ const lenuint128 = (128 / 8) // == 16
 // The length of a uint, measured in number-of-bytes.
 const lenuint = int(unsafe.Sizeof(unused))
 
-// The length of the array in the bits128.Uint128 struct, measured in number-of-uints.
-// NOTE that this is measured in uints (rather than number-of-bytes).
-const lenarray = lenuint128 / lenuint
+// SizeUint equals the number of 'uint' that equals a uint128.
+//
+// So, for example, if a 'uint' is 32-bits in size, then SizeUint is 4 (== 128 / 32).
+//
+// And, for example, if a 'uint' is 64-bits in size, then SizeUint is 2 (== 128 / 64).
+const SizeUint = lenuint128 / lenuint
 
 // We expected the length of a uint128 to be divisble by the length of a uint.
 // If it isn't, we panic().
@@ -32,14 +35,20 @@ func init() {
 type Uint128 struct {
 	// We use 'uint' rather than 'uint64' (or something else) to make it so we are using the optimal word length for the CPU architecture.
 	// So, 'uint' MIGHT be 'uint64' or MIGHT be 'uint32' or MIGHT be something else.
-	array [lenarray]uint
+	array [SizeUint]uint
 }
 
 func Uint128FromUint(value uint) Uint128 {
 	return Uint128{
-		array: [lenarray]uint{
+		array: [SizeUint]uint{
 			value,
 		},
+	}
+}
+
+func Uint128FromUintsLittleEndian(array [SizeUint]uint) Uint128 {
+	return Uint128{
+		array: array,
 	}
 }
 
@@ -58,4 +67,9 @@ func (receiver Uint128) String() string {
 	}
 
 	return string(p)
+}
+
+// Uints returns the uint128 as a little-endian array of uint.
+func (receiver Uint128) Uints() [SizeUint]uint {
+	return receiver.array
 }
