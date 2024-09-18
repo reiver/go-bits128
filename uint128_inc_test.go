@@ -176,7 +176,7 @@ func TestUint128_Inc(t *testing.T) {
 			expected := test.Expected
 
 			if expected != actual {
-				t.Errorf("For test #%d, the actual cmp-value is not what was expected." , testNumber)
+				t.Errorf("For test #%d, the actual inc-value is not what was expected." , testNumber)
 				t.Logf("EXPECTED: %v", expected)
 				t.Logf("ACTUAL:   %v", actual)
 				t.Logf("VALUE:    %v", test.Value)

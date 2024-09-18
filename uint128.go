@@ -114,6 +114,19 @@ func (src1 *Uint128) Cmp(src2 *Uint128) int {
 	}
 }
 
+// Dec decrements the uint128.
+func (receiver *Uint128) Dec() {
+	if nil == receiver {
+		return
+	}
+
+	var borrow uint = 1
+
+	for index:=0; index<SizeUints; index++ {
+		receiver.array[index], borrow = bits.Add(receiver.array[index], 0, borrow)
+	}
+}
+
 // Inc increments the uint128.
 func (receiver *Uint128) Inc() {
 	if nil == receiver {
