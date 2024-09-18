@@ -6,7 +6,7 @@ import (
 	"github.com/reiver/go-bits128"
 )
 
-func TestUint128_String_uint(t *testing.T) {
+func TestUint128_String(t *testing.T) {
 
 	tests := []struct{
 		Value bits128.Uint128
