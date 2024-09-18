@@ -2,7 +2,7 @@ package bits128
 
 import (
 	"fmt"
-//	"math/bits"
+	"math/bits"
 	"unsafe"
 )
 
@@ -113,6 +113,19 @@ func (src1 *Uint128) Cmp(src2 *Uint128) int {
 		return 0
 	}
 }
+
+func (receiver *Uint128) Inc() {
+	if nil == receiver {
+		return
+	}
+
+	var carry uint = 1
+
+	for index:=0; index<SizeUints; index++ {
+		receiver.array[index], carry = bits.Add(0, receiver.array[index], carry)
+	}
+}
+
 
 func (receiver Uint128) String() string {
 	var buffer [34]byte
