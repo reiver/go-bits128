@@ -47,6 +47,45 @@ func Uint128FromUint(value uint) Uint128 {
 	}
 }
 
+func Uint128FromUint64(value uint64) Uint128 {
+	const lenuint64 = int(unsafe.Sizeof(value))
+
+	switch {
+	case lenuint64 <= lenuint:
+		return Uint128FromUint(uint(value))
+	default:
+		const iterations = (lenuint64 / lenuint)
+
+		var val Uint128
+
+		for index:=0; index < iterations; index++ {
+
+			var allUintFs uint
+			allUintFs = allUintFs - 1
+
+			var shift = (8*4*index)
+
+			var mask uint64 = uint64(allUintFs) << shift
+
+			val.array[index] = uint((mask & value) >> shift)
+		}
+
+		return val
+	}
+}
+
+func Uint128FromUint32(value uint32) Uint128 {
+	return Uint128FromUint64(uint64(value))
+}
+
+func Uint128FromUint16(value uint16) Uint128 {
+	return Uint128FromUint64(uint64(value))
+}
+
+func Uint128FromUint8(value uint8) Uint128 {
+	return Uint128FromUint64(uint64(value))
+}
+
 func Uint128FromUintsLittleEndian(array [SizeUints]uint) Uint128 {
 	return Uint128{
 		array: array,

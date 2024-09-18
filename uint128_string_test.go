@@ -17,13 +17,34 @@ func TestUint128_String(t *testing.T) {
 			Expected: "0x00000000000000000000000000000000",
 		},
 		{
+			Value:            bits128.Uint128FromUint64(0x0),
+			Expected:   "0x00000000000000000000000000000000",
+		},
+
+
+
+		{
 			Value:            bits128.Uint128FromUint(0x1),
 			Expected: "0x00000000000000000000000000000001",
 		},
 		{
+			Value:            bits128.Uint128FromUint64(0x1),
+			Expected:   "0x00000000000000000000000000000001",
+		},
+
+
+
+		{
 			Value:            bits128.Uint128FromUint(0x2),
 			Expected: "0x00000000000000000000000000000002",
 		},
+		{
+			Value:            bits128.Uint128FromUint64(0x2),
+			Expected:   "0x00000000000000000000000000000002",
+		},
+
+
+
 		{
 			Value:            bits128.Uint128FromUint(0x3),
 			Expected: "0x00000000000000000000000000000003",
@@ -304,13 +325,27 @@ func TestUint128_String(t *testing.T) {
 			Value:     bits128.Uint128FromUint(0xFFFFFFFD),
 			Expected: "0x000000000000000000000000FFFFFFFD",
 		},
+
+
+
 		{
 			Value:     bits128.Uint128FromUint(0xFFFFFFFE),
 			Expected: "0x000000000000000000000000FFFFFFFE",
 		},
 		{
+			Value:     bits128.Uint128FromUint64(0xFFFFFFFE),
+			Expected:   "0x000000000000000000000000FFFFFFFE",
+		},
+
+
+
+		{
 			Value:     bits128.Uint128FromUint(0xFFFFFFFF),
 			Expected: "0x000000000000000000000000FFFFFFFF",
+		},
+		{
+			Value:     bits128.Uint128FromUint64(0xFFFFFFFF),
+			Expected:   "0x000000000000000000000000FFFFFFFF",
 		},
 
 
@@ -318,6 +353,17 @@ func TestUint128_String(t *testing.T) {
 
 
 
+
+
+
+		{
+			Value: bits128.Uint128FromUint(0xFEDCBA987654321F),
+			Expected:     "0x0000000000000000FEDCBA987654321F",
+		},
+		{
+			Value: bits128.Uint128FromUint64(0xFEDCBA987654321F),
+			Expected:       "0x0000000000000000FEDCBA987654321F",
+		},
 
 
 
@@ -325,12 +371,9 @@ func TestUint128_String(t *testing.T) {
 			Value: bits128.Uint128FromUint(0xFFFFFFFFFFFFFFFF),
 			Expected:     "0x0000000000000000FFFFFFFFFFFFFFFF",
 		},
-
-
-
 		{
-			Value: bits128.Uint128FromUint(0xFEDCBA987654321F),
-			Expected:     "0x0000000000000000FEDCBA987654321F",
+			Value: bits128.Uint128FromUint64(0xFFFFFFFFFFFFFFFF),
+			Expected:       "0x0000000000000000FFFFFFFFFFFFFFFF",
 		},
 
 
