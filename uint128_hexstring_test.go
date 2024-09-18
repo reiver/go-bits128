@@ -6,7 +6,7 @@ import (
 	"github.com/reiver/go-bits128"
 )
 
-func TestUint128_String(t *testing.T) {
+func TestUint128_HexString(t *testing.T) {
 
 	tests := []struct{
 		Value bits128.Uint128
@@ -402,7 +402,7 @@ func TestUint128_String(t *testing.T) {
 
 		{
 			expected := test.Expected
-			actual   := val.String()
+			actual   := val.HexString()
 
 			if expected != actual {
 				t.Errorf("For test #%d, the actual stringer-value is not what was expected." , testNumber)

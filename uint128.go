@@ -133,20 +133,7 @@ func (receiver *Uint128) Dec() {
 	}
 }
 
-// Inc increments the uint128.
-func (receiver *Uint128) Inc() {
-	if nil == receiver {
-		return
-	}
-
-	var carry uint = 1
-
-	for index:=0; index<SizeUints; index++ {
-		receiver.array[index], carry = bits.Add(receiver.array[index], 0, carry)
-	}
-}
-
-func (receiver Uint128) String() string {
+func (receiver Uint128) HexString() string {
 	var buffer [34]byte
 	var p []byte = buffer[0:0]
 
@@ -161,6 +148,19 @@ func (receiver Uint128) String() string {
 	}
 
 	return string(p)
+}
+
+// Inc increments the uint128.
+func (receiver *Uint128) Inc() {
+	if nil == receiver {
+		return
+	}
+
+	var carry uint = 1
+
+	for index:=0; index<SizeUints; index++ {
+		receiver.array[index], carry = bits.Add(receiver.array[index], 0, carry)
+	}
 }
 
 func (receiver *Uint128) Xor(src1 *Uint128, src2 *Uint128) {

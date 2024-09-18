@@ -10,7 +10,7 @@ func TestMaxUint128(t *testing.T) {
 
 	var expected string = "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
 
-	var actual string = bits128.MaxUint128().String()
+	var actual string = bits128.MaxUint128().HexString()
 
 	if expected != actual {
 		t.Errorf("The actual max-uint128 is not what was expected.")
