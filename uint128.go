@@ -123,7 +123,7 @@ func (receiver *Uint128) Inc() {
 	var carry uint = 1
 
 	for index:=0; index<SizeUints; index++ {
-		receiver.array[index], carry = bits.Add(0, receiver.array[index], carry)
+		receiver.array[index], carry = bits.Add(receiver.array[index], 0, carry)
 	}
 }
 
