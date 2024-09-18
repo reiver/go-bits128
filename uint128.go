@@ -130,3 +130,9 @@ func (receiver Uint128) String() string {
 
 	return string(p)
 }
+
+func (receiver *Uint128) Xor(src1 *Uint128, src2 *Uint128) {
+	for index:=0; index<SizeUints; index++ {
+		receiver.array[index] = src1.array[index] ^ src2.array[index]
+	}
+}
