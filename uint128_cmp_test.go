@@ -147,8 +147,8 @@ func TestUint128_Cmp(t *testing.T) {
 				t.Errorf("For test #%d, the actual cmp-value is not what was expected." , testNumber)
 				t.Logf("EXPECTED: %d", expected)
 				t.Logf("ACTUAL:   %d", actual)
-				t.Logf("VALUE-1: %v", test.Value1)
-				t.Logf("VALUE-2: %v", test.Value2)
+				t.Logf("VALUE-1: %s", test.Value1.HexString())
+				t.Logf("VALUE-2: %s", test.Value2.HexString())
 				continue
 			}
 		}
