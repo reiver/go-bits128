@@ -108,6 +108,10 @@ func (receiver *Int128) Dec() {
 	receiver.uint128.Dec()
 }
 
+func (receiver Int128) HexString() string {
+	return receiver.uint128.HexString()
+}
+
 func (receiver *Int128) Inc() {
 	receiver.uint128.Inc()
 }
@@ -129,8 +133,4 @@ func (receiver *Int128) IsPositive() bool {
 
 func (receiver *Int128) IsZero() bool {
 	return receiver.uint128.IsZero()
-}
-
-func (receiver Int128) HexString() string {
-	return receiver.uint128.HexString()
 }
