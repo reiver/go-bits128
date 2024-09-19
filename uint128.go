@@ -163,6 +163,12 @@ func (receiver *Uint128) Inc() {
 	}
 }
 
+func (receiver *Uint128) IsPositive() bool {
+	var zero Uint128
+
+	return !receiver.IsZero()
+}
+
 func (receiver *Uint128) IsZero() bool {
 	var zero Uint128
 
